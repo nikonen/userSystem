@@ -73,6 +73,13 @@ label {
     margin-bottom: 20px;
     box-shadow: 5px 5px 4px rgba(0, 0, 0, .5);
 }
+.card {
+    background-color: #888e87;
+}
+
+.card-body {
+    background-color: #acc1aa;
+}
 
 .card-text > p{
     color: black;
@@ -80,10 +87,6 @@ label {
 
 .card-header {
     width: 100%;
-}
-
-.btn-primary {
-    color: background-color;
 }
 
 body {
