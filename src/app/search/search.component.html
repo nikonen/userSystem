@@ -1,0 +1,14 @@
+<div class="cointainer-fluid text-center">
+
+    <h2>search</h2>
+
+
+  <input type="text" class="form-control" (input)="onSearchChange($event.target.value)">
+
+
+
+      <p *ngFor="let user of users" >
+      <a class="nav-inline" [routerLink]="['/user', user.id]">{{user.username}}</a>
+      </p>
+
+</div>

@@ -1,0 +1,49 @@
+
+<div class="cointainer-fluid text-center">
+
+<h2>Sign up</h2>
+<form [formGroup]="signupForm" (ngSubmit)="onFormSubmit()" >
+<div class="form-group">
+
+
+<p><label class="center-block">username:
+    <input class="form-control" formControlName="username">
+    <div *ngIf="username.invalid && username.touched"
+class="col-sm-12 text-danger">
+<div *ngIf = "username.errors?.required">Username can't be blank</div>
+<div *ngIf = "username.errors?.minlength">Username too short (min. 4chars)</div>
+</div>
+</label></p>
+
+
+<p><label class="center-block">Email: 
+    <input class="form-control" formControlName="email">
+
+<div *ngIf="email.invalid && email.touched"
+class="col-sm-12 text-danger">
+<div *ngIf = "email.errors?.required"> Email field can't be blank</div>
+<div *ngIf = "email.errors?.email">Wierd looking email address</div>
+</div>
+</label> </p>
+
+
+<p><label class="center-block">Password:
+    <input class="form-control" formControlName="password">
+<div *ngIf="password.invalid && password.touched"
+class="col-sm-12 text-danger">
+<div *ngIf = "password.errors?.required">Password field can't be blank</div>
+<div *ngIf = "password.errors?.minlength">Password too short (min. 8chars)</div>
+</div>
+</label></p>
+
+
+{{passwordError}}
+<p><label class="center-block">Password again: 
+    <input class="form-control" formControlName="passwordAgain">
+</label></p>
+
+
+<button type="submit" [disabled] = "!signupForm.valid" class="btn-sample rounded">Submit</button>
+</div>
+</form>
+</div>

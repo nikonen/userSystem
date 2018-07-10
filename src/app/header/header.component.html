@@ -1,0 +1,38 @@
+<nav class="navbar navbar-expand-lg rounded">
+  <a class="navbar-brand" href="#"><img src="../assets/logo.png"></a>
+  <button class="navbar-toggler navbar-dark" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText"
+    aria-expanded="false" aria-label="Toggle navigation">
+    <span class=""><i class="fab fa-elementor fa-3x"></i></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarText">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a routerLink="/home" [routerLinkActive]="['is-active']" class="nav-link">Home
+          <span class="sr-only">(current)</span>
+        </a>
+      </li>
+      <li  class="nav-item">
+        <a routerLink="/profile"[routerLinkActive]="['is-active']" class="nav-link">Profile</a>
+      </li>
+      <li  class="nav-item">
+        <a routerLink="/secret"[routerLinkActive]="['is-active']" class="nav-link">Secret</a>
+      </li>
+      <li  class="nav-item">
+        <a routerLink="/signup"[routerLinkActive]="['is-active']" class="nav-link">Sign up</a>
+      </li>
+      <li  class="nav-item">
+        <a routerLink="/login"[routerLinkActive]="['is-active']" class="nav-link">Login</a>
+      </li>
+      <li  class="nav-item">
+          <a routerLink="/message"[routerLinkActive]="['is-active']" class="nav-link">Messages</a>
+        </li>
+      <li  class="nav-item">
+          <a routerLink="/checklist"[routerLinkActive]="['is-active']" class="nav-link">Checklist</a>
+        </li>
+    </ul>
+    <app-polling></app-polling>
+    
+    <a routerLink="/search"[routerLinkActive]="['is-active']" class="nav-item"><i class="fab fa-searchengin fa-2x"></i></a>
+
+  </div>
+</nav>

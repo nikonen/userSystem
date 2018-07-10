@@ -1,0 +1,16 @@
+<div class="container-fluid">
+<h2>Messages: </h2>
+<ul>
+<li *ngFor="let message of messages">
+from: <a class="sender" [routerLink]="['/user', message.whofrom]">{{message.username}}</a> :
+{{message.message}} | <i class="littleitalian">sent {{message.time}}</i> 
+
+<span class="green" *ngIf="message.unread == 1">-new- 
+<a routerLink="/message" (click)="markAsRead(message.id)"> Mark as read </a></span>
+<i *ngIf="message.unread == 0" class="fas fa-check green"></i>
+<i (click)="deleteMessage(message.id)" class="fas fa-trash-alt red"></i>
+</li>
+
+</ul>
+
+</div>

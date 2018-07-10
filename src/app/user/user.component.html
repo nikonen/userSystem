@@ -1,0 +1,84 @@
+<div class="container-fluid">
+
+  <div [@listStagger]="users" class="row" *ngIf="users">
+    <div class="col-3 ">
+      <div *ngIf="users" class="card border-dark mb-3 col-lg-6 " style="max-width: 18rem;">
+        <div class="card-header">
+          <img class="img-fluid" src="../assets/img/{{users.picurl}}">
+        </div>
+
+        <div class="card-body text-dark">
+          <h5 class="card-title">{{users.username}}</h5>
+          <div class="card-text">
+            <p>id: {{users.id}}</p>
+            <p>username: {{users.username}}</p>
+            <p>email: {{users.email}}</p>
+            <p>registered: {{users.registerdate}}</p>
+            <p>last online: {{users.lastOnline}}</p>
+            <p>role: {{users.role}}</p>
+            <p *ngIf="users.role == 1">
+              <span class="badge badge-pill badge-primary">Admin</span>
+            </p>
+            <!-- <a class="sender" [routerLink]="['/message/send']">Send Message</a> -->
+
+            <button type="button" class="btn-sample rounded" (click)="show()">Send message</button>
+
+
+            
+
+          </div>
+
+          
+
+        </div>
+      </div>
+
+    </div>
+
+    <div class="col-9">
+
+      <h2> BIOGRAPHY </h2>
+      <p>
+        {{users.biography}}
+
+      </p>
+
+    </div>
+</div>
+</div>
+<div>
+
+</div>
+
+
+
+<div>
+    <ng-container #vc></ng-container>
+</div>
+  
+<!-- "Modal" box -->
+<ng-template #el><span>
+    <div id="boxBackground">
+      <div id="boxModal" class="rounded">
+        <div id="boxHeader">
+          <span (click)="hide()">
+            <h5>Send message to {{users.username}} <i class="fas fa-times right"></i></h5>
+          </span>
+        </div>
+        <div id="boxBody">
+            <form [formGroup]="messageForm" (ngSubmit)="onFormSubmit()">
+              <div class="form-group">
+                  <input class="form-control" formControlName="message">
+              <button class="btn-sample rounded">
+                  <i class="fas fa-angle-double-right"> Send </i>
+              </button>
+              </div>
+             </form>
+          
+        </div>
+      </div>
+      
+    </div>
+  </span>
+</ng-template>
+<!-- "Modal" box end -->
