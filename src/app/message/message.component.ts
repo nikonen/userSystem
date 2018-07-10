@@ -6,6 +6,7 @@ import { interval } from "rxjs/internal/observable/interval";
 import { startWith } from "rxjs/internal/operators/startWith";
 import { switchMap } from "rxjs/internal/operators/switchMap";
 import { Pollingservice } from "../pollingservice";
+import { NotifyService } from "../notify.service";
 
 @Component({
   selector: "app-message",
@@ -13,15 +14,17 @@ import { Pollingservice } from "../pollingservice";
   styleUrls: ["./message.component.css"]
 })
 export class MessageComponent implements OnInit {
-  constructor(private router: Router, private messageService: MessageService, private pollingService: Pollingservice) {}
+  constructor(private router: Router, private messageService: MessageService, 
+              private pollingService: Pollingservice, private notifyService: NotifyService) {}
 
   messages: any;
   unread: any;
   id;
+  username;
   ngOnInit() {
 
     this.id = this.getID();
- 
+    this.username = this.getUsername();
     this.messageService.getMessages(this.id)
     .subscribe(data => {
       this.messages = data;
@@ -50,12 +53,26 @@ export class MessageComponent implements OnInit {
     }
   }
 
-  markAsRead(id) {
+  getUsername() {
+    let token = localStorage.getItem("token");
+    if (token != null) {
+      let tokenPayLoad = decode(token);
+      return tokenPayLoad.username;
+    }
+  }
+
+  markAsRead(id,username, fromId, toId) {
     this.messageService.markAsRead(id)
     .subscribe(data=>{
       console.log(data);
     })
-    window.location.assign('/message');
+    this.notifyService.sendNotify(fromId, toId, this.username+" have read your message!")
+    .subscribe(data=>{
+      console.log(data);
+      console.log("username " + username);
+      
+    })
+    
   }
 
   deleteMessage(id) {

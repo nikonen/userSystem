@@ -9,13 +9,21 @@ export class NotifyService {
   readonly url = 'http://localhost:82/phpangular/userSystem/src/api/notifyCtrl.php';
   constructor(private http: HttpClient) { }
 
+  /**
+   * 
+   * @param senderId who sent message, he/she will be notified
+   * @param receiverId Just in case
+   * @param notification notification message
+   */
   sendNotify(senderId: number, receiverId: number, notification: string) {
-    this.http.post(this.url, 
-        {'data': 'sendNotify',
-          'senderId:': senderId,
-          'receiverId': receiverId,
+    return this.http.post(this.url, 
+        {'data': 'sendNotification',
+          'notifyTo': senderId,
+          'notifyFrom': receiverId,
           'notification': notification
         })
+
+        alert("NotifyTo: " + senderId + " notifyFrom: " + receiverId);
   }
 
   deleteNotify(id) {
@@ -30,10 +38,10 @@ export class NotifyService {
       'id': messageId});
   }
 
-  getNotify(receiverId:number) {
+  getNotifications(receiverId:number) {
     return this.http.post(this.url, 
-      {'data': 'getNotify',
-        'receiverId': receiverId});
+      {'data': 'getNotifications',
+        'notifyTo': receiverId});
   }
 
   getUnread(recieverId:number){

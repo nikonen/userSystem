@@ -32,6 +32,7 @@ export class MessageService {
     return this.http.post(this.url, 
     {'data': 'markAsRead',
       'id': messageId});
+    
   }
 
   getMessages(receiverId:number) {

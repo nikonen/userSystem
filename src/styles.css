@@ -103,7 +103,8 @@ body {
 }
 
 .red {
-    color: red;
+    color: #660000;
+    opacity: 50%;
 }
 
 @keyframes example {
@@ -260,6 +261,14 @@ body {
 
   .fa-searchengin {
     color: #ffa31a;
+  }
+
+  .fa-trash-alt {
+      margin-left: 10px;
+  }
+
+  .fa-check {
+      margin-left: 10px;
   }
 
 

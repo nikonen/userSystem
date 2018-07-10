@@ -29,8 +29,8 @@ switch($action) {
 
 function getMessages($data, $db) {
     $whoto = $data->receiverId;
-    $query = 'select message.id, message.whofrom, message.message, 
-    message.time, message.unread, user.username from message 
+    $query = 'select message.id, message.whofrom, message.whoto, message.message, 
+    message.time, message.unread, username from message 
     left join user on message.whofrom = user.id where message.whoto = ? 
     order by message.time desc' ;
     $stmt = $db->prepare($query);

@@ -1,3 +1,6 @@
-<p>
-  notify works!
-</p>
+<div class="container-fluid">
+
+  <ul *ngIf="notifications">
+    <li *ngFor="let notify of notifications"> {{notify.id}} - {{notify.notification}}</li>
+  </ul>
+</div>

@@ -28,6 +28,7 @@ import { FileuploaderComponent } from './fileuploader/fileuploader.component';
 import { MessageComponent } from './message/message.component';
 import { PollingComponent } from './polling/polling.component';
 import { NotifyComponent } from './notify/notify.component';
+import decode from 'jwt-decode';
 export function tokenGetter() {
   return localStorage.getItem('token');
 }
@@ -47,6 +48,7 @@ const appRoutes = [
 {path: 'checklist', component: ChecklistComponent},
 {path: 'fileuploader', component: FileuploaderComponent},
 {path: 'message', component: MessageComponent, canActivate: [AuthGuard]},
+{path: 'notify', component: NotifyComponent, canActivate: [AuthGuard],
 {path: '**', component: NotfoundComponent}
 
 

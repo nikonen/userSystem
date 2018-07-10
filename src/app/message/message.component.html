@@ -6,9 +6,10 @@ from: <a class="sender" [routerLink]="['/user', message.whofrom]">{{message.user
 {{message.message}} | <i class="littleitalian">sent {{message.time}}</i> 
 
 <span class="green" *ngIf="message.unread == 1">-new- 
-<a routerLink="/message" (click)="markAsRead(message.id)"> Mark as read </a></span>
+<a routerLink="/message" (click)="markAsRead(message.id, message.username, message.whofrom, message.whoto)"> Mark as read </a></span>
 <i *ngIf="message.unread == 0" class="fas fa-check green"></i>
 <i (click)="deleteMessage(message.id)" class="fas fa-trash-alt red"></i>
+
 </li>
 
 </ul>

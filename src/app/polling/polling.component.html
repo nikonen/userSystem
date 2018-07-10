@@ -1,7 +1,7 @@
-<span *ngIf="length" class="newMessages rounded">
-<a  routerLink="/message"><i class="fas fa-envelope"></i> {{length}} </a>
+<span *ngIf="msgLength" class="newMessages rounded">
+<a  routerLink="/message"><i class="fas fa-envelope"></i> {{msgLength}} </a>
 </span>
-<span *ngIf="length" class="newNotifys rounded">
-    <a  routerLink="/message"><i class="fas fa-exclamation"></i> {{length}} </a>
+<span *ngIf="notificationLength" class="newNotifys rounded">
+    <a  routerLink="/notify"><i class="fas fa-exclamation"></i> {{notificationLength}} </a>
 </span>
     

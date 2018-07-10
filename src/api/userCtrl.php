@@ -81,7 +81,7 @@ if (password_verify($password, $result->password)) {
 
 $loggedin = true;
 $id = $result->id;
-
+$username = $result->username;
 /**
  * 
  *Just for the timestamp :)
@@ -95,6 +95,7 @@ $resultt= $stmt->execute((array($id)));
     $expiration = $issuedAt + 120;
     $payload = array( 
         'id' => $id,
+        'username' => $username,
         'iat'=> $issuedAt,
         'exp'=> $expiration
     );

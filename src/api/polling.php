@@ -7,19 +7,41 @@ header("Access-Control-Allow-Methods: PUT, POST, GET, OPTIONS, DELETE");
 
 
 include_once 'database.php';
-define('JWT_SECRET', 'secret-phrase-that-should-be-somewhere-else');
-
-$data = json_decode(file_get_contents('php://input'));
-$id = $data->id;
-
 $database = new Database();
 $db = $database->getConnection();
 
-$query = 'select id, unread from message where whoto = ? and unread = 1';
-$stmt = $db->prepare($query);
-$stmt->execute(array($id));
-$result = $stmt->fetchAll(PDO::FETCH_CLASS);
-echo json_encode($result);
+$data = json_decode(file_get_contents('php://input'));
+
+$type = $data->type;
+
+switch($type) {
+    case 'message':
+        pollUnreadMessages($data, $db);
+    break;
+
+    case 'notification':
+        pollNotifications($data, $db);
+        break;
+}
+
+function pollUnreadMessages($data, $db) {
+    $id = $data->id;
+    $query = 'select id, unread from message where whoto = ? and unread = 1';
+    $stmt = $db->prepare($query);
+    $stmt->execute(array($id));
+    $result = $stmt->fetchAll(PDO::FETCH_CLASS);
+    echo json_encode($result);
+}
+
+function pollNotifications($data, $db) {
+    $id = $data->id;
+    $query = 'select id, unread from notifications where towho = ? and unread = 1';
+    $stmt = $db->prepare($query);
+    $stmt->execute(array($id));
+    $result = $stmt->fetchAll(PDO::FETCH_CLASS);
+    echo json_encode($result);
+}
+
 
 
 ?>

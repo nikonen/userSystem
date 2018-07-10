@@ -16,9 +16,11 @@ export class PollingComponent implements OnInit {
   constructor(private router: Router, private messageService: MessageService, private pollingService: Pollingservice) {}
 
   messages: any;
+  notifications: any;
   unread: any;
   id;
-  length;
+  msgLength;
+  notificationLength;
   ngOnInit() {
 
     this.id = this.getID();
@@ -32,14 +34,32 @@ export class PollingComponent implements OnInit {
       switchMap(() => this.pollingService.getMessages(this.id))
     ).subscribe(res=> {
 
-      this.length = Object.keys(res).length;
-      console.log(this.length);
+      this.msgLength = Object.keys(res).length;
+      console.log(this.msgLength);
       this.unread = res;
       console.log(res);
       
     });
+
+
     }
+
+        
+    interval(5000)
+    .pipe(
+      startWith(0),
+      switchMap(() => this.pollingService.getNotifications(this.id))
+    ).subscribe(res=> {
+
+      this.notificationLength = Object.keys(res).length;
+      console.log(this.notificationLength);
+      this.notifications = res;
+      console.log(res);
+      
+    });
+
   }
+
   getID() {
     
     let token = localStorage.getItem("token");
@@ -48,5 +68,6 @@ export class PollingComponent implements OnInit {
     return tokenPayload.id;
     }
   }
-  
-  }
+
+}
+
