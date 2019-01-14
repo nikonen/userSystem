@@ -1,10 +1,12 @@
 <?php
 
-
+/**
+* this will be away from public_html
+**/
 class Database {
-    private $host = "localhost";
-    private $db_name = "nameless";
-    private $username = "root";
+    private $host = "";
+    private $db_name = "";
+    private $username = "";
     private $password = "";
     public $conn;
 
